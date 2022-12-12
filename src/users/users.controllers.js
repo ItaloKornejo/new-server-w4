@@ -4,6 +4,7 @@ const {hashPassword} = require('../utils/crypto')
 
 const findAllUsers = async () => {
     const data = await Users.findAll({
+        where:{ status:'active'},
         attributes : {exclude:['password','role','createdAt','updatedAt','status']}
     });
     return data
@@ -42,7 +43,7 @@ const updateUser = async (id, obj) => {
 }
 
 const deleteUser = async (id) => {
-    const data = await Users.destroy({
+    const data = await Users.update({status:'disabled'},{
         where: {
             id: id
         }

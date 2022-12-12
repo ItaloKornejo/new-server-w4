@@ -68,7 +68,7 @@ const patchUser = (req, res) => {
 
 const deleteUser = (req, res) => {
     const id = req.user.id;
-
+    console.log(id);
     userControllers.deleteUser(id)
         .then((data) => {
             if(data){
